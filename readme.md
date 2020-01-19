@@ -15,5 +15,5 @@ To install docker-compose please visit https://docs.docker.com/compose/install/
 To build and run an image download the yaml file and run the following command:
 
 ```
-docker-compose docker-filename.yml run -d --build
+docker-compose docker-filename.yml up -d --build
 ```

@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+    postgres:
+        image: postgres
+        restart: always
+        container_name: postgresql
+        environment:
+            POSTGRES_PASSWORD: admin
+        ports:
+            - 15432:5432
+        volumes:
+            - data:/var/lib/postgresql
+        networks:
+            - postgres-network
+    
+    pgadmin:
+        image: dpage/pgadmin4
+        restart: always
+        container_name: pgadmin4
+        environment: 
+            PGADMIN_DEFAULT_EMAIL: lassulfi@gmail.com
+            PGADMIN_DEFAULT_PASSWORD: admin
+        ports:
+            - 16543:80
+        depends_on:
+            - postgres
+        networks:
+            - postgres-network
+
+volumes:
+    data:
+
+networks:
+    postgres-network:
+        driver: bridge
